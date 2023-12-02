@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import PostList from "../components/PostList.astro";
+import Main from "../components/Main.astro";
+import H1 from "../components/H1.astro";
 
 const allPosts = await getCollection("posts");
 console.log(allPosts);
@@ -9,9 +11,9 @@ console.log(allPosts);
 ---
 
 <Layout title="A Coder's Life">
-  <main class="px-24 max-sm:px-5 max-w-7xl mx-auto w-full">
-    <h1 class="text-6xl font-bold mb-5">A Coder's Life Blog</h1>
+  <Main class="px-24 max-sm:px-5 max-w-7xl mx-auto w-full">
+    <H1 text="A Coder's Life" />
     <p class="mb-10">Exploring the Syntax of Success: One Developer's Chronicle Through Code and Innovation</p>
     <PostList posts={allPosts}/>
-  </main>
+  </Main>
 </Layout>
