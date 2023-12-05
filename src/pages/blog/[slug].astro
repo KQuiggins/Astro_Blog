@@ -5,6 +5,7 @@ import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon';
 import H1 from '../../components/H1.astro';
 import {Image} from "astro:assets"
+import TableOfContents from '../../components/TableOfContents.astro';
 
 export  const getStaticPaths = async () => {
     const posts = await getCollection('posts');
@@ -32,20 +33,22 @@ type Props = {
 
 const { post } = Astro.props;
 const {Content, headings} = await post.render();
+console.log(headings);
+
 ---
 
 <Layout title={post.data.title}>
-    <Main>
-
-
+        <Main>
             <a href="/blog">
                 <Icon name="noto:back-arrow" class="h-8 mt-4" />
             </a>
             <H1 text={post.data.title}/>
             <img src={`/${post.data.image}`} alt={post.data.title} class="rounded-2xl shadow-xl mb-28 aspect-thumbnail object-cover"/>
-            <div class="prose prose-2xl overflow-visible relative">
-                <Content />
+            <div class="relative flex gap-x-12">
+                <div class="prose prose-2xl overflow-visible relative">
+                    <Content />
+                </div>
+                <TableOfContents headings={headings} />
             </div>
-
-    </Main>
+        </Main>
 </Layout>
