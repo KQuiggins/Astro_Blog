@@ -44,7 +44,16 @@ console.log(headings);
                 <Icon name="noto:back-arrow" class="h-8 mt-4" />
             </a>
             <H1 text={post.data.title}/>
-            <img src={`/${post.data.image}`} alt={post.data.title} class="rounded-2xl shadow-xl mb-28 aspect-thumbnail object-cover"/>
+            <!-- <img src={`/${post.data.image}`} alt={post.data.title}
+             class="rounded-2xl shadow-xl mb-28 aspect-thumbnail object-cover"/> -->
+             <Image
+            src={`/${post.data.image}`}
+            alt={post.data.title}
+            width={1024}
+            height={1024 / 1.5}
+            format="webp"
+            class="rounded-2xl shadow-xl mb-28 aspect-thumbnail object-cover"
+        />
             <div class="mb-10">
                 <TableOfContents headings={headings} />
             </div>

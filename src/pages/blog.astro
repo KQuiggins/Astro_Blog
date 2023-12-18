@@ -4,9 +4,10 @@ import Layout from "../layouts/Layout.astro";
 import PostList from "../components/PostList.astro";
 import Main from "../components/Main.astro";
 import H1 from "../components/H1.astro";
+import Pagination from "../components/Pagination.astro";
 
-const allPosts = await getCollection("posts");
-console.log(allPosts);
+const posts = (await getCollection("posts")).slice(0, 6);
+console.log(posts);
 
 ---
 
@@ -14,6 +15,12 @@ console.log(allPosts);
   <Main class="px-24 max-sm:px-5 max-w-7xl mx-auto w-full">
     <H1 text="A Coder's Life" />
     <p class="mb-10">Exploring the Syntax of Success: One Developer's Chronicle Through Code and Innovation</p>
-    <PostList posts={allPosts}/>
+    <div class="mb-12">
+      <Pagination nextURL="/blog/2" />
+    </div>
+    <PostList posts={posts}/>
+    <div class="mb-24">
+      <Pagination nextURL="/blog/2" />
+    </div>
   </Main>
 </Layout>

@@ -1,0 +1,32 @@
+---
+import type { GetStaticPathsOptions, Page } from "astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import H1 from "../../components/H1.astro";
+import Main from "../../components/Main.astro";
+import PostList from "../../components/PostList.astro";
+import Layout from "../../layouts/Layout.astro";
+import Pagination from "../../components/Pagination.astro";
+export async function getStaticPaths({paginate}: GetStaticPathsOptions) {
+    const allPosts = await getCollection("posts");
+    return paginate(allPosts, {pageSize: 6});
+}
+
+type Props = {
+    page: Page;
+}
+
+const { page } = Astro.props;
+const posts = page.data as CollectionEntry<"posts">[];
+---
+
+<Layout title="A Coder's Life">
+    <Main class="px-24 max-sm:px-5 max-w-7xl mx-auto w-full">
+      <H1 text="A Coder's Life" />
+      <p class="mb-10">Exploring the Syntax of Success: One Developer's Chronicle Through Code and Innovation</p>
+      <div class="mb-24">
+        <Pagination prevURL={page.url.prev} nextURL={page.url.next} />
+      </div>
+      <PostList posts={posts}/>
+
+    </Main>
+  </Layout>
