@@ -17,6 +17,8 @@ type Props = {
 
 const { page } = Astro.props;
 const posts = page.data as CollectionEntry<"posts">[];
+const AllCategories = posts.flatMap(post => post.data.categories);
+const categories = Array.from(new Set(AllCategories));
 ---
 
 <Layout title="A Coder's Life" description="Exploring the Syntax of Success: One Developer's Chronicle Through Code and Innovation">
