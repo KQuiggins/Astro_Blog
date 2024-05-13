@@ -10,7 +10,7 @@ import CategoryList from "../components/CategoryList.astro";
 const posts = (await getCollection("posts")).slice(0, 6);
 const AllCategories = posts.flatMap(post => post.data.categories);
 const categories = Array.from(new Set(AllCategories));
-//console.log(posts);
+
 
 ---
 
